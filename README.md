@@ -10,6 +10,9 @@ This is a single-page application that visualizes the activity data of developer
 - Aesthetically pleasing and user-friendly UI
 - Mobile responsive design
 
+![Uploading image.png…]()
+
+
 ## Technologies Used
 
 - React
