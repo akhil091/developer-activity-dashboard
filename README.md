@@ -10,7 +10,7 @@ This is a single-page application that visualizes the activity data of developer
 - Aesthetically pleasing and user-friendly UI
 - Mobile responsive design
 
-![Uploading image.png…]()
+![image](https://github.com/akhil091/developer-activity-dashboard/assets/31368316/0cfac744-a745-4d55-bac2-680b98e88e7b)
 
 
 ## Technologies Used
