@@ -20,7 +20,7 @@ This is a single-page application that visualizes the activity data of developer
 - CSS (with styled-components)
 - Recharts (for charting)
 - Axios (for data fetching)
-- Vercel (for deployment)
+- Netlify (for deployment)
 
 ## Getting Started
 
