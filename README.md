@@ -2,6 +2,8 @@
 
 This is a single-page application that visualizes the activity data of developers within an organization. The dashboard displays activities such as committing code, opening and merging pull requests, attending meetings, and writing documentation over a week. The data is fetched from a mock API and displayed using charts, tables, and summary statistics.
 
+API created : https://mocki.io/v1/ec30feb1-3f4f-486c-92b4-e8dd7803f98b
+
 ## Features
 
 - Fetches data from a mock API endpoint
