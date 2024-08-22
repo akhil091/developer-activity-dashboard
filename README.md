@@ -1,6 +1,8 @@
-# Developer Activity Dashboard
+# DevTrackr - Developer Activity Dashboard
 
 This is a single-page application that visualizes the activity data of developers within an organization. The dashboard displays activities such as committing code, opening and merging pull requests, attending meetings, and writing documentation over a week. The data is fetched from a mock API and displayed using charts, tables, and summary statistics.
+
+API created : https://mocki.io/v1/ec30feb1-3f4f-486c-92b4-e8dd7803f98b
 
 ## Features
 
@@ -10,6 +12,9 @@ This is a single-page application that visualizes the activity data of developer
 - Aesthetically pleasing and user-friendly UI
 - Mobile responsive design
 
+![image](https://github.com/akhil091/developer-activity-dashboard/assets/31368316/0cfac744-a745-4d55-bac2-680b98e88e7b)
+
+
 ## Technologies Used
 
 - React
@@ -17,7 +22,7 @@ This is a single-page application that visualizes the activity data of developer
 - CSS (with styled-components)
 - Recharts (for charting)
 - Axios (for data fetching)
-- Vercel (for deployment)
+- Netlify (for deployment)
 
 ## Getting Started
 
