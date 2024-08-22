@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://mocki.io/v1/612f96f7-0d72-45ef-bf20-a066fdf9b5a8';
+const API_URL = 'https://mocki.io/v1/ec30feb1-3f4f-486c-92b4-e8dd7803f98b';
 
 export const fetchData = async () => {
     try {
