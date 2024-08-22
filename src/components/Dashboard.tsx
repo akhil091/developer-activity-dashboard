@@ -3,16 +3,18 @@ import { fetchData } from '../services/api';
 import ActivityChart from './ActivityChart';
 import SummaryTable from './SummaryTable';
 import Filter from './Filter';
-import { AuthorWorklog, Developer, ActivityMeta, TransformedData } from '../types';
+import { AuthorWorklog, Developer, ActivityMeta } from '../types';
+import { extractNameFromEmail } from '../utils';
 
 const Dashboard: React.FC = () => {
     const [data, setData] = useState<Developer[]>([]);
-    const [chartData, setChartData] = useState<TransformedData[]>([]);
+    const [chartData, setChartData] = useState<any[]>([]);
     const [activityMeta, setActivityMeta] = useState<ActivityMeta[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
 
+     // Fetch data from the API when the component mounts
     useEffect(() => {
         const getData = async () => {
             try {
@@ -32,23 +34,24 @@ const Dashboard: React.FC = () => {
         getData();
     }, []);
 
-    const formatChartData = (developers: Developer[], activityMeta: ActivityMeta[]): TransformedData[] => {
-        const dates = Array.from(new Set(developers.flatMap(dev => dev.dayWiseActivity.map(day => day.date))));
-
-        return dates.map(date => {
-            const entry: TransformedData = { date };
-            developers.forEach(dev => {
-                const day = dev.dayWiseActivity.find(d => d.date === date);
-                if (day) {
-                    day.items.children.forEach(item => {
-                        entry[`${dev.name}_${item.label}`] = Number(item.count) || 0;
-                    });
-                }
+    // Format data for the chart
+    const formatChartData = (developers: Developer[], activityMeta: ActivityMeta[]) => {
+        const chartData: any[] = [];
+        developers.forEach(developer => {
+            const developerName = extractNameFromEmail(developer.name);
+            developer.dayWiseActivity.forEach(day => {
+                const date = new Date(day.date).toLocaleDateString();
+                const activities: { [key: string]: number } = {};
+                day.items.children.forEach(item => {
+                    activities[item.label] = Number(item.count);
+                });
+                chartData.push({ developer: developerName, date, ...activities });
             });
-            return entry;
         });
+        return chartData;
     };
 
+    // Handle activity selection in the filter
     const handleSelectActivity = (activity: string) => {
         const newSelectedActivities = selectedActivities.includes(activity)
             ? selectedActivities.filter(a => a !== activity)
@@ -59,11 +62,12 @@ const Dashboard: React.FC = () => {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
 
+    // Filter chart data based on selected activities
     const filteredActivityMeta = activityMeta.filter(meta => selectedActivities.includes(meta.label));
     const filteredChartData = chartData.map(day => {
-        const filteredDay: TransformedData = { date: day.date };
+        const filteredDay: { [key: string]: any } = { developer: day.developer, date: day.date };
         selectedActivities.forEach(activity => {
-            filteredDay[activity] = day[`${activity}`] || 0;
+            filteredDay[activity] = day[activity];
         });
         return filteredDay;
     });

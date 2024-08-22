@@ -3,7 +3,12 @@ export interface ActivityMeta {
     fillColor: string;
 }
 
-export interface ActivityItem {
+export interface TotalActivity {
+    name: string;
+    value: string;
+}
+
+export interface DayWiseItem {
     count: string;
     label: string;
     fillColor: string;
@@ -12,13 +17,8 @@ export interface ActivityItem {
 export interface DayWiseActivity {
     date: string;
     items: {
-        children: ActivityItem[];
+        children: DayWiseItem[];
     };
-}
-
-export interface TotalActivity {
-    name: string;
-    value: string;
 }
 
 export interface ActiveDays {
@@ -37,9 +37,4 @@ export interface Developer {
 export interface AuthorWorklog {
     activityMeta: ActivityMeta[];
     rows: Developer[];
-}
-
-export interface TransformedData {
-    date: string;
-    [key: string]: number | string; // Allow other keys to be numbers or strings, `date` is a string
 }
